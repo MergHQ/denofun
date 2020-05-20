@@ -33,6 +33,8 @@ Deno.test({
     assertEquals(JSON.stringify({ hello: maybe() }), "{}");
     assertEquals(maybe(0).toString(), "0");
     assertEquals(maybe().toString(), "");
+    assertEquals(maybe<number>().getOrElse(0), 0);
+    assertEquals(maybe(true).getOrElse(false), true);
   },
 });
 

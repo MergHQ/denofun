@@ -5,6 +5,7 @@
  */
 export interface Maybe<T> extends Iterable<T> {
   get(): T | undefined;
+  getOrElse(fallback: T): T;
   default(t: T): T;
   toArray(): [] | [T];
   map<R>(f: (t: T) => R): Maybe<R>;
@@ -22,6 +23,9 @@ function nothing<T>(): Maybe<T> {
   return {
     get() {
       return undefined;
+    },
+    getOrElse(fallback: T): T {
+      return fallback;
     },
     default(t: T) {
       return t;
@@ -57,6 +61,9 @@ function nothing<T>(): Maybe<T> {
 function just<T>(value: T): Maybe<T> {
   return {
     get() {
+      return value;
+    },
+    getOrElse(fallback: T) {
       return value;
     },
     default(t: T) {

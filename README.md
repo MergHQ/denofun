@@ -465,6 +465,8 @@ const maybeNumber = maybe(numbers.find((n) => n > 2));
 maybeNumber.get(); // => 3
 maybeNumber.map((n) => n + 1).get(); // => 4
 maybeNumber.flatMap((n) => (n !== 3 ? maybe(1 / (n - 3)) : maybe())).get(); // => undefined
+maybeNumber.getOrElse(0) // => 3
+maybe(undefined).getOrElse(3) // => 3
 ```
 
 ### memoize
